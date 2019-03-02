@@ -1,0 +1,23 @@
+{
+  "name": "ar_drill",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "ws --https"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/todays-mitsui/ararar.git"
+  },
+  "author": "Mitsui <todays.mitsui@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/todays-mitsui/ararar/issues"
+  },
+  "homepage": "https://github.com/todays-mitsui/ararar#readme",
+  "devDependencies": {
+    "local-web-server": "^2.6.1"
+  }
+}

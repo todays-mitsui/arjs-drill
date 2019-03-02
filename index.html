@@ -5,26 +5,77 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>A-Frame</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./js/lodash.min.js"></script>
 <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
 <script src="./js/aframe-ar.js"></script>
-<script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
+
+<script>
+function changeColor(target) {
+  const r = _.random(0,255);
+  const g = _.random(0,255);
+  const b = _.random(0,255);
+
+  target.setAttribute('color', `rgb(${r},${g},${b})`);
+}
+
+AFRAME.registerComponent('markerhandler', {
+  init: function() {
+    const animatedMarker = document.querySelector("#animated-marker");
+
+    animatedMarker.addEventListener('click', function(ev){
+      console.info('ev:', ev);
+      console.info('type:', ev.type);
+      console.info('target:', ev.target);
+
+      changeColor(ev.target)
+    });
+  },
+});
+</script>
+
 </head>
 <body>
 
 <a-scene arjs>
-  <a-marker preset="hiro">
+  <a-marker
+    preset="hiro"
+    markerhandler
+    emitevents="true"
+    cursor="rayOrigin: mouse"
+    id="animated-marker"
+  >
+    <!-- 直方体 -->
     <a-box
-      position="-1 0 -3"
+      position="-1 0 0"
       rotation="0 45 0"
-      color="#c0ffee">
-        <a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="30 30 360"></a-animation>
+      color="#4CC3D9"
+    >
+      <a-animation
+        attribute="position"
+        to="-1 2 0"
+        dur="1000"
+        fill="both"
+        repeat="indefinite"
+      ></a-animation>
     </a-box>
+
+    <!-- 球体 -->
     <a-sphere
-      position="0 0 -5" radius="1.25" color="#EF2D5E"
-      animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 0 -0.10 -5; loop: true"
+      position="0 0 -2"
+      radius="0.8"
+      color="#EF2D5E"
     ></a-sphere>
-    <a-cylinder position="1 0 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+
+    <!-- 円柱形 -->
+    <a-cylinder
+      position="1 0 0"
+      radius="0.5"
+      height="1.5"
+      color="#FFC65D"
+    ></a-cylinder>
   </a-marker>
+
   <a-entity camera></a-entity>
 </a-scene>
 
