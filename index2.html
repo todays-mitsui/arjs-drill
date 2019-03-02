@@ -6,16 +6,18 @@
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-animation-component@3.2.1/dist/aframe-animation-component.min.js"></script>
     <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-extras.ocean@%5E3.5.x/dist/aframe-extras.ocean.min.js"></script>
-    <script src="https://unpkg.com/aframe-gradient-sky@1.0.4/dist/gradientsky.min.js"></script>
     <script src="https://rawgit.com/mayognaise/aframe-mouse-cursor-component/master/dist/aframe-mouse-cursor-component.min.js"></script>
   </head>
   <body>
 
     <a-scene>
-      <a-box position="0 3.5 -2" rotation="30 30 0" color="skyblue"
-             event-set__enter="_event: mouseenter; material.color: yellowgreen; scale: 3 1 1"
-             event-set__leave="_event: mouseleave; material.color: skyblue; scale: 1 1 1">
+      <a-box
+        position="0 3.5 -2"
+        rotation="30 30 0"
+        color="skyblue"
+        event-set__enter="_event: mouseenter; material.color: yellowgreen; scale: 3 1 1"
+        event-set__leave="_event: mouseleave; material.color: skyblue; scale: 1 1 1"
+      >
         <a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="30 30 360"></a-animation>
       </a-box>
 
