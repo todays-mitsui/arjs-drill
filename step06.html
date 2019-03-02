@@ -28,7 +28,7 @@ function addModel($container) {
   const y = _.random(-2.0, 2.0, /* floating = */ true);
   const z = _.random(-2.0, 2.0, /* floating = */ true);
 
-  console.log('container:', container);
+  console.log('container:', $container);
   console.log('container:', x, y, z);
 
   $container.append(`
@@ -67,7 +67,7 @@ AFRAME.registerComponent('markerhandler', {
 
 jQuery(function($) {
   $('.add-box').on('click', function(e) {
-    e.preventDefult();
+    e.preventDefault();
 
     const $container = $('a-marker');
 
