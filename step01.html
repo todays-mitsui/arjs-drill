@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title>AR.js Drill</title>
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/lodash.min.js"></script>
+<script src="./js/aframe.min.js"></script>
+
+<script>
+</script>
+
+</head>
+<body>
+
+<a-scene>
+  <!-- 直方体 -->
+  <a-box
+    position="-1 0 0"
+    rotation="0 45 0"
+    color="#4CC3D9"
+  ></a-box>
+
+  <!-- 球体 -->
+  <a-sphere
+    position="0 0 -2"
+    radius="0.8"
+    color="#EF2D5E"
+  ></a-sphere>
+
+  <!-- 円柱形 -->
+  <a-cylinder
+    position="1 0 0"
+    radius="0.5"
+    height="1.5"
+    color="#FFC65D"
+  ></a-cylinder>
+
+  <!-- 平面 -->
+  <a-plane
+    position="0 -4 0"
+    rotation="-90 0 0"
+    width="8"
+    height="8"
+    color="#7BC8A4"
+  ></a-plane>
+
+  <!-- 背景 -->
+  <a-sky color="#ECECEC"></a-sky>
+</a-scene>
+
+</body>
+</html>
