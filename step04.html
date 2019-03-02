@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title>AR.js Drill</title>
+
+<link rel="stylesheet" href="./css/style.css">
+
+<script src="./js/jquery.min.js"></script>
+<script src="./js/lodash.min.js"></script>
+<script src="./js/aframe.min.js"></script>
+<script src="./js/aframe-ar.js"></script>
+
+<script>
+function changeColor(target) {
+  const r = _.random(0,255);
+  const g = _.random(0,255);
+  const b = _.random(0,255);
+
+  target.setAttribute('color', `rgb(${r},${g},${b})`);
+}
+
+AFRAME.registerComponent('markerhandler', {
+  init: function() {
+    var marker = this.el;
+
+    marker.addEventListener('click', function(e) {
+      console.info('event:', e);
+      console.info('target:', e.target.tagName);
+
+      if (e.target.tagName !== 'A-MARKER') {
+        changeColor(e.target);
+      }
+    });
+  },
+});
+</script>
+
+</head>
+<body>
+
+<a-scene arjs>
+  <a-marker
+    preset="hiro"
+    markerhandler
+    emitevents="true"
+    cursor="rayOrigin: mouse"
+  >
+    <!-- 直方体 -->
+    <a-box
+      position="-1 0 0"
+      rotation="0 45 0"
+      color="#4CC3D9"
+    ></a-box>
+
+    <!-- 球体 -->
+    <a-sphere
+      position="0 0 -2"
+      radius="0.8"
+      color="#EF2D5E"
+    ></a-sphere>
+
+    <!-- 円柱形 -->
+    <a-cylinder
+      position="1 0 0"
+      radius="0.5"
+      height="1.5"
+      color="#FFC65D"
+    ></a-cylinder>
+  </a-marker>
+
+  <a-entity camera></a-entity>
+</a-scene>
+
+</body>
+</html>
