@@ -19,16 +19,36 @@ function changeColor(target) {
   target.setAttribute('color', `rgb(${r},${g},${b})`);
 }
 
+function addModel(container) {
+  const x = _.random(-2.0, 2.0, /* floating = */ true);
+  const y = _.random(-2.0, 2.0, /* floating = */ true);
+  const z = _.random(-2.0, 2.0, /* floating = */ true);
+
+  console.log('container:', container);
+  console.log('container:', x, y, z);
+
+  $(container).append(`
+    <a-box
+      position="${x} ${y} ${z}"
+      rotation="0 45 0"
+      color="#4CC3D9"
+    ></a-box>
+  `);
+}
+
 AFRAME.registerComponent('markerhandler', {
   init: function() {
     const animatedMarker = document.querySelector("#animated-marker");
 
-    animatedMarker.addEventListener('click', function(ev){
-      console.info('ev:', ev);
-      console.info('type:', ev.type);
-      console.info('target:', ev.target);
+    animatedMarker.addEventListener('click', function(e) {
+      console.info('event:', e);
+      console.info('target:', e.target.tagName);
 
-      changeColor(ev.target)
+      if (e.target.tagName == 'A-MARKER') {
+        addModel(e.target);
+      } else {
+        changeColor(e.target);
+      }
     });
   },
 });
@@ -52,10 +72,11 @@ AFRAME.registerComponent('markerhandler', {
       color="#4CC3D9"
     >
       <a-animation
-        attribute="position"
-        to="-1 2 0"
-        dur="1000"
-        fill="both"
+        attribute="rotation"
+        dur="500"
+        fill="backwards"
+        from="20 0 0"
+        to="30 405 30"
         repeat="indefinite"
       ></a-animation>
     </a-box>
