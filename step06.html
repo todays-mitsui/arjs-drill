@@ -65,12 +65,14 @@ AFRAME.registerComponent('markerhandler', {
   },
 });
 
-$('.add-box').on('click', function(e) {
-  e.preventDefult();
+jQuery(function($) {
+  $('.add-box').on('click', function(e) {
+    e.preventDefult();
 
-  const $container = $('a-marker');
+    const $container = $('a-marker');
 
-  addModel($container);
+    addModel($container);
+  });
 });
 </script>
 
